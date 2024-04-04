@@ -1,5 +1,5 @@
 import './Piece.css';
-import pieceSrcMap from '../../assets/images/pieceSrcMap'
+import pieceSrcMap from './pieceSrcMap'
 
 interface PieceProps {
     color: string
