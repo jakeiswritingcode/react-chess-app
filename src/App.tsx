@@ -1,10 +1,13 @@
-import Chessboard from './components/Chessboard/Chessboard'
 import './App.css';
+import Chessboard from './components/Chessboard/Chessboard'
+import { BoardProvider } from './context/BoardContext';
 
 function App() {
   return (
     <div id="app">
-      <Chessboard/>
+      <BoardProvider>
+        <Chessboard/>
+      </BoardProvider>
     </div>
   );
 }
