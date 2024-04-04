@@ -1,5 +1,0 @@
-const pieceSvgUrls: Record<string, string> = {
-    "Rook": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg",
-};
-
-export default pieceSvgUrls;

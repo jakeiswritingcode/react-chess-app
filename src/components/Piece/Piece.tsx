@@ -1,4 +1,5 @@
 import './Piece.css';
+import pieceSrcMap from '../../assets/images/pieceSrcMap'
 
 interface PieceProps {
     color: string
@@ -6,8 +7,8 @@ interface PieceProps {
 }
 
 export default function Piece({color, type}: PieceProps) {
-    if (type === "Rook") {
-        return <img className="piece" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg" alt="Rook" />
-    }
-    return <img />;
+    const imageUrl = pieceSrcMap[`${color} ${type}`];
+    const altText = `${color} ${type}`;
+
+    return <img className="piece" src={imageUrl} alt={altText} />
 }
