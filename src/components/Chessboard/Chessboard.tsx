@@ -1,6 +1,6 @@
 import './Chessboard.css';
-import Tile from '../Tile/Tile';
-import Piece from '../Piece/Piece';
+import Tile from '../Tile';
+import Piece from '../Piece';
 import { useBoardContext } from '../../context/BoardContext';
 
 const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
