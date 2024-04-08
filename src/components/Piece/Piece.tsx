@@ -9,6 +9,7 @@ interface PieceProps {
 
 export default function Piece({ color, type, position }: PieceProps) {
     const onDragStart = (e: React.DragEvent<HTMLImageElement>) => {
+        // TODO: indicate valid moves with new context
         const data = JSON.stringify({ type, color, position });
         e.dataTransfer.setData("piece", data);
     };

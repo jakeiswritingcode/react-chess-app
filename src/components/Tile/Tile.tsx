@@ -12,6 +12,7 @@ export default function Tile({ file, rank, children }: TileProps) {
     
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault(); // Necessary to allow dropping
+        // TODO: highlight square 
     };
 
     const onDrop = (e: React.DragEvent<HTMLDivElement>) => {

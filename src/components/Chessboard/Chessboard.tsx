@@ -16,6 +16,8 @@ interface PieceData {
 export default function Chessboard() {
     let board: JSX.Element[] = [];
 
+    // TODO: log captured pieces for each state and display
+
     const { pieces, movePiece } = useBoardContext();
 
     for (let i = 0; i < verticalAxis.length; i++) {
