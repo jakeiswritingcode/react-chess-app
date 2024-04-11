@@ -1,13 +1,11 @@
-export interface PieceInfo {
+interface PieceInfo {
     type: string;
     color: string;
 }
 
-export interface PiecePosition {
-    [key: string]: PieceInfo | undefined;
-}
-
-const initialPositions: PiecePosition = {
+export const initialPositions: {
+    [key: string]: PieceInfo | undefined
+} = {
     "a1": { color: "White", type: "Rook" },
     "b1": { color: "White", type: "Knight" },
     "c1": { color: "White", type: "Bishop" },
@@ -44,5 +42,3 @@ const initialPositions: PiecePosition = {
     "g8": { color: "Black", type: "Knight" },
     "h8": { color: "Black", type: "Rook" },
 };
-
-export default initialPositions;

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import initialPositions from '../data/initialPositions';
+import { initialPositions } from '../data/initialPositions';
 
 interface BoardContextType {
     pieces: { [key: string]: any }; // Replace 'any' with your piece type
