@@ -1,10 +1,10 @@
 import './Piece.css';
 import pieceSrcMap from './pieceSrcMap'
 
-interface PieceProps {
+export interface PieceProps {
     color: string
     type: string
-    position: string
+    position?: string
 }
 
 export default function Piece({ color, type, position }: PieceProps) {
