@@ -4,5 +4,5 @@ export interface MoveUpdate extends BaseUpdate {
     type: 'move';
     from: string;
     to: string;
-    promotion?: 'Q' | 'R' | 'B' | 'N';
+    promotion?: 'Queen' | 'Rook' | 'Bishop' | 'Knight';
 }
