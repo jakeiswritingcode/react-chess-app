@@ -6,13 +6,6 @@ import { useBoardContext } from '../../context/BoardContext';
 const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const verticalAxis = ["8", "7", "6", "5", "4", "3", "2", "1"];
 
-interface PieceData {
-    fromFile: string;
-    fromRank: number;
-    type: string;
-    color: string;
-}
-
 export default function Chessboard() {
     let board: JSX.Element[] = [];
 
