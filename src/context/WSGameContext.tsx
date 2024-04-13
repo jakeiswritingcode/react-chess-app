@@ -13,7 +13,7 @@ const defaultContextValue: WSGameContextType = {
 
 const WebSocketContext = createContext<WSGameContextType>(defaultContextValue);
 
-export const useWebSocket = () => useContext(WebSocketContext); // TODO: change this
+export const useGameWebSocket = () => useContext(WebSocketContext);
 
 interface WebSocketProviderProps {
   children: ReactNode;

@@ -3,7 +3,7 @@ import { initialPositions } from '../data/initialPositions';
 import { MoveUpdate } from '../wsGameUpdates/updates/MoveUpdate';
 import { ForfeitUpdate } from '../wsGameUpdates/updates/ForfeitUpdate';
 import { ChatUpdate } from '../wsGameUpdates/updates/ChatUpdate';
-import { useWebSocket } from './WSGameContext';
+import { useWSGameContext } from './WSGameContext';
 
 interface PieceInfo {
     color: string;
@@ -25,7 +25,7 @@ interface BoardProviderProps {
 
 export const BoardProvider = ({ children }: BoardProviderProps) => {
     const [pieces, setPieces] = useState<{ [key: string]: PieceInfo | undefined }>(initialPositions);
-    const { send } = useWebSocket();
+    const { send } = useWSGameContext();
 
     const movePiece = (fromPosition: string, toPosition: string, promotion?: 'Queen' | 'Rook' | 'Bishop' | 'Knight') => {
         const moveUpdate: MoveUpdate = {
