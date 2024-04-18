@@ -31,19 +31,37 @@ export const WSGameProvider = ({ children }: WebSocketProviderProps) => {
   };
 
   useEffect(() => {
-    const webSocket = new WebSocket('wss://chess-backend-url.com'); // TODO: generate backend url
+    let webSocket: WebSocket | null;
+    let retryConnectionTimeoutId: NodeJS.Timeout;
 
-    webSocket.onopen = () => {
+    const initializeWebSocket = () => {
+      webSocket = new WebSocket('wss://chess-backend-url.com'); // TODO: generate backend url
+      webSocket.onopen = handleOpen;
+      webSocket.onclose = handleClose;
+      webSocket.onerror = handleError;
+      webSocket.onmessage = handleMessage;
+    };
+
+    const handleOpen = () => {
       setWs(webSocket);
       console.log('WebSocket Connected');
+      clearTimeout(retryConnectionTimeoutId);
     };
-
-    webSocket.onclose = () => {
+  
+    const handleClose = (event: CloseEvent) => {
       setWs(null);
-      console.log('WebSocket Disconnected');
+      console.log('WebSocket Disconnected', event.reason);
+      if (!event.wasClean) {
+        retryConnectionTimeoutId = setTimeout(initializeWebSocket, 4000);
+      }
     };
 
-    webSocket.onmessage = (event) => {
+    const handleError = (error: Event) => {
+      webSocket?.close();
+      console.error('WebSocket Error:', error);
+    };
+
+    const handleMessage = (event: MessageEvent) => {
       const message = JSON.parse(event.data);
       switch (message.type) {
         case 'full-update':
@@ -62,8 +80,11 @@ export const WSGameProvider = ({ children }: WebSocketProviderProps) => {
       }
     };
 
+    initializeWebSocket();
+
     return () => {
-      webSocket.close();
+      webSocket?.close();
+      clearTimeout(retryConnectionTimeoutId);
     };
   }, []);
 
