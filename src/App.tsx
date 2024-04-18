@@ -1,17 +1,18 @@
 import './App.css';
-import Chessboard from './components/Chessboard';
-import { WebSocketProvider } from './context/WSGameContext';
-import { BoardProvider } from './context/BoardContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ChessGamePage from './pages/ChessGamePage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
+    <BrowserRouter>
     <div id="app">
-      <WebSocketProvider>
-        <BoardProvider>
-          <Chessboard/>
-        </BoardProvider>
-      </WebSocketProvider>
+      <Routes>
+        <Route path="/" element={<ChessGamePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
     </div>
+  </BrowserRouter>    
   );
 }
 
