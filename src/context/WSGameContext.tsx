@@ -2,12 +2,10 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import { GameUpdate } from '../wsGameUpdates';
 
 interface WSGameContextType {
-  ws: WebSocket | null;
   send: (message: GameUpdate) => void;
 }
 
 const defaultContextValue: WSGameContextType = {
-  ws: null,
   send: (message: GameUpdate) => {},
 };
 
@@ -21,6 +19,8 @@ interface WebSocketProviderProps {
 
 export const WSGameProvider = ({ children }: WebSocketProviderProps) => {
   const [ws, setWs] = useState<WebSocket | null>(null);
+  // set gameState context
+  // set chat context
 
   const send = (gameUpdate: GameUpdate) => {
     if (ws && ws.readyState === WebSocket.OPEN) {
@@ -68,7 +68,7 @@ export const WSGameProvider = ({ children }: WebSocketProviderProps) => {
   }, []);
 
   return (
-    <WebSocketContext.Provider value={{ ws, send }}>
+    <WebSocketContext.Provider value={{ send }}>
       {children}
     </WebSocketContext.Provider>
   );
