@@ -45,7 +45,21 @@ export const WSGameProvider = ({ children }: WebSocketProviderProps) => {
 
     webSocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      // TODO: handle server response
+      switch (message.type) {
+        case 'full-update':
+          // update board context value
+          // update chatbox context value
+          break;
+        case 'move-update':
+          // update board context value
+          break;
+        case 'chat-update':
+          // add to chatbox context value here
+          break;
+        default:
+          console.error(`Unsupported message type received: ${message.type}`);
+          // TODO: implement UI feedback and/or fallback behavior
+      }
     };
 
     return () => {
