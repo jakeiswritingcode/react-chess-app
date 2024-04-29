@@ -1,15 +1,20 @@
-import { WSGameProvider } from '../context/WSGameContext';
+import { GameProvider } from '../context/GameContext';
+import { ChatProvider } from '../context/ChatContext';
+import ChatWindow from '../components/ChatWindow';
 import { BoardProvider } from '../context/BoardContext';
 import Chessboard from '../components/Chessboard';
 
 function ChessGamePage() {
     return (
-        <WSGameProvider>
+        <GameProvider>
+            <ChatProvider>
+                <ChatWindow />
+            </ChatProvider>
             <BoardProvider>
                 <Chessboard />
             </BoardProvider>
-        </WSGameProvider>
+        </GameProvider>
     );
-  }
-  
-  export default ChessGamePage;
+}
+
+export default ChessGamePage;
