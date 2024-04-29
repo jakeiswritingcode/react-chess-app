@@ -63,7 +63,9 @@ export const GameProvider = ({ children }: WebSocketProviderProps) => {
       console.error("webSocketService state is undefined.");
       return;
     }
-    webSocketService.send(gameUpdate);
+    webSocketService.send(
+      JSON.stringify(gameUpdate)
+    );
   };
 
   return (

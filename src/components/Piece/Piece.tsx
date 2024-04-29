@@ -4,7 +4,7 @@ import pieceSrcMap from './pieceSrcMap'
 export interface PieceProps {
     color: string
     type: string
-    position?: string
+    position: string
 }
 
 export default function Piece({ color, type, position }: PieceProps) {
