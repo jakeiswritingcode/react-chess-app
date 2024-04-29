@@ -24,10 +24,17 @@ interface MoveEffect {
 }
 
 interface BoardContextType {
-    pieces: { [key: string]: PieceInfo | undefined };
-    movePiece: (fromPosition: string, toPosition: string, promotion?: 'Queen' | 'Rook' | 'Bishop' | 'Knight') => void;
-    forfeitGame: () => void;
-    sendChat: (message: string) => void;
+    player: 'White' | 'Black',
+    turn: 'White' | 'Black',
+    pieces: { [key: string]: PieceInfo | undefined },
+    // captures: PieceInfo[],
+    moves: { [key: string]: MoveEffect | undefined},
+    promotionData: { inProgress: boolean, from: string, to: string, promotions: string[]},
+    setPromotionData: (data: { inProgress: boolean, from: string, to: string, promotions: string[] }) => void,
+    movePiece: (from: string, to: string, promotion?: string) => void,
+    offerDraw: () => void,
+    acceptDraw: () => void,
+    forfeitGame: () => void,
 }
 
 const BoardContext = createContext<BoardContextType>({
