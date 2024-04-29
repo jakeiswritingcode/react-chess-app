@@ -114,7 +114,6 @@ export const BoardProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             to,
             ...(promotion ? { promotion } : {}),
         };
-
         send(moveUpdate);
     };
 
@@ -140,7 +139,11 @@ export const BoardProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
 
     return (
-        <BoardContext.Provider value={{ pieces, movePiece, forfeitGame, sendChat }}>
+        <BoardContext.Provider value={{
+            player, turn, pieces, moves,
+            promotionData, setPromotionData,
+            movePiece, offerDraw, acceptDraw, forfeitGame
+        }}>
             {children}
         </BoardContext.Provider>
     );

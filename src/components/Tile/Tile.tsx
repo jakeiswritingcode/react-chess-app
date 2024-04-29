@@ -8,7 +8,7 @@ interface TileProps {
 }
 
 export default function Tile({ file, rank, children }: TileProps) {
-    const { pieces, movePiece } = useBoardContext();
+    const { pieces, moves, movePiece, setPromotionData } = useBoardContext();
     
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault(); // Necessary to allow dropping
@@ -17,8 +17,19 @@ export default function Tile({ file, rank, children }: TileProps) {
 
     const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const { color, type, position } = JSON.parse(e.dataTransfer.getData("piece"));
-        movePiece(position, `${file+rank}`);
+        const { position } = JSON.parse(e.dataTransfer.getData("piece"));
+        
+        const from = position;
+        const to = `${file+rank}`;
+
+        const moveEffect = moves[`${from}_${to}`];
+        if (!moveEffect) return;
+
+        if (moveEffect.promotionsAvailable.length === 0) {
+            movePiece(position, `${file+rank}`);
+        } else {
+            setPromotionData({ inProgress: true, from, to, promotions: moveEffect.promotionsAvailable });
+        }
     };
 
     const fileIndex = file.charCodeAt(0) - 'a'.charCodeAt(0);

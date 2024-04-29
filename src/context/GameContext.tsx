@@ -69,7 +69,7 @@ export const GameProvider = ({ children }: WebSocketProviderProps) => {
   };
 
   return (
-    <GameContext.Provider value={{ send, gameIsConnected, boardData, chatData }}>
+    <GameContext.Provider value={{ send, gameIsConnected }}>
       {children}
     </GameContext.Provider>
   );
