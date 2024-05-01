@@ -18,14 +18,14 @@ const PromotionPopup = () => {
     }
 
     return (
-        <Modal show={promotionData.inProgress} onHide={cancelPromotion} centered>
+        <Modal show={promotionData.inProgress} onHide={cancelPromotion}>
             <Modal.Header closeButton>
                 <Modal.Title>Choose Promotion</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
                     {promotionData.promotions.map((type) => (
-                        <Button key={type} variant="outline-primary" onClick={() => promotePiece(type)}>
+                        <Button key={type} onClick={() => promotePiece(type)}>
                             <img src={pieceSrcMap[`${turn} ${type}`]} alt={type} style={{ width: 30, height: 30 }} />
                         </Button>
                     ))}
